@@ -5,7 +5,7 @@ import {IRebaseToken} from "./interfaces/IRebaseToken.sol";
 
 contract Vault {
     error Vault__RedeemFailed();
-    
+
     IRebaseToken private immutable i_rebaseToken;
 
     event Deposit(address indexed user, uint256 amount);
@@ -22,7 +22,8 @@ contract Vault {
      */
     function deposit() external payable {
         // we need to use the amount of ETH the user has sent to mint tokens to the user
-        IRebaseToken(i_rebaseToken).mint(msg.sender, msg.value);
+        uint256 interestRate = i_rebaseToken.getInterestRate();
+        i_rebaseToken.mint(msg.sender, msg.value, interestRate);
         emit Deposit(msg.sender, msg.value);
     }
 
@@ -45,7 +46,7 @@ contract Vault {
         emit Redeem(msg.sender, _amount);
     }
 
-    function getRebaseTokenAddress() external view returns(address) {
+    function getRebaseTokenAddress() external view returns (address) {
         return address(i_rebaseToken);
     }
 }

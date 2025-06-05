@@ -94,7 +94,7 @@ contract RebaseTokenTest is Test {
 
     function testTransfer(uint256 amount, uint256 amountToSend) public {
         amount = bound(amount, 1e5 + 1e5, type(uint96).max);
-        amountToSend = bound(amountToSend, 1e5, amount-1e5);
+        amountToSend = bound(amountToSend, 1e5, amount - 1e5);
 
         vm.deal(user, amount);
         vm.prank(user);
@@ -112,7 +112,7 @@ contract RebaseTokenTest is Test {
         vm.prank(user);
         rebaseToken.transfer(user2, amountToSend);
         uint256 userBalanceAfterTransfer = rebaseToken.balanceOf(user);
-        uint256 user2BalanceAfterTransfer = rebaseToken.balanceOf(user2); 
+        uint256 user2BalanceAfterTransfer = rebaseToken.balanceOf(user2);
         assertEq(userBalanceAfterTransfer, userBalance - amountToSend);
         assertEq(user2BalanceAfterTransfer, amountToSend);
 
@@ -129,7 +129,7 @@ contract RebaseTokenTest is Test {
     function testCannotCallMintAndBurn() public {
         vm.prank(user);
         vm.expectPartialRevert(IAccessControl.AccessControlUnauthorizedAccount.selector);
-        rebaseToken.mint(user, 100);
+        rebaseToken.mint(user, 100, rebaseToken.getInterestRate());
         vm.expectPartialRevert(IAccessControl.AccessControlUnauthorizedAccount.selector);
         rebaseToken.burn(user, 100);
     }
