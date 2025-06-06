@@ -1,66 +1,9 @@
-## Foundry
+# Cross-Chain Rebase Token
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+CCIP Message ID (Successful Transaction hash): 0x507bbd0e7acc248a94a3044833e7fc40f7a1671147578f38b4b3079154c1f331
 
-Foundry consists of:
+A rebase token is one whose total supply is automatically adjusted based on an interest rate. Users are incentivized to deposit ETH into a vault contract and gain rewards in return. This interest rate gradually decreases over time to incentivize early adoption.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Rebasing doesn't affect the overall value of each user's holdings proportionally, it changes the number of tokens in wallets to maintain a target value.
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Call script `bridgeTozkSync.sh` to send over RBT from Ethereum to zkSync testnet.
